@@ -4,6 +4,7 @@ import com.anurag.demo.Entity.User;
 import com.anurag.demo.Repository.UserRepository;
 import com.anurag.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +19,11 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-
+@GetMapping("/")
+public String Hey()
+{
+    return "Hey Ur Oauth2 Client is properly Functioning Mate";
+}
 
     @GetMapping("/hello")
     public String sayHello()
@@ -36,7 +41,7 @@ public class UserController {
 
     @PostMapping("/login")
 
-    public String login(@RequestBody User user)
+    public ResponseEntity<String> login(@RequestBody User user)
     {
        return userService.Login(user);
 
